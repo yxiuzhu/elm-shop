@@ -22,6 +22,11 @@
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
+    <div class="bulletin-wrapper">
+      <span class="bulletin-title"></span>
+      <span class="bulletin-text">{{seller.bulletin}}</span>
+      <i class="icon-keyboard_arrow_right"></i>
+    </div>
     <div class="bulletin-wrapper"></div>
   </div>
 </template>
@@ -125,4 +130,33 @@
         .icon-keyboard_arrow_right
           line-height: 22px
           font-size: 10px
+    .bulletin-wrapper
+      position: relative
+      // height: 28px
+      line-height: 28px
+      padding: 0 22px 0 12px
+      // 三句省略文本出现
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      background: rgba(7, 17, 27, 0.2)
+      .bulletin-title
+        // position: absolute
+        display: inline-block
+        vertical-align: baseline
+        // margin-top: 8px
+        width: 22px
+        height: 12px
+        bg-image('bulletin')
+        background-size: 22px 12px
+        background-repeat: no-repeat
+      .bulletin-text
+        vertical-align: top
+        margin: 0 4px
+        font-size: 10px
+      .icon-keyboard_arrow_right
+        position: absolute
+        font-size: 10px
+        right: 18px
+        top: 9px
 </style>
