@@ -20,7 +20,12 @@ module.exports = {
       theme: true
     }
   },
+  lintOnSave: false,
   devServer: {
+    overlay: {
+      warning: false,
+      errors: false
+    },
     before(app) {
       app.get('/api/seller', function(req, res) {
         res.json({
