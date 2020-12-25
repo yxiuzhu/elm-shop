@@ -3,6 +3,23 @@ body, html
   font-weight: 200
   font-family: 'PingFang SC','STHeitiSC-Light','Helvetica-Light',arial,sans-serif
 
+// 用来解决bullutin-wrapper的高度塌陷问题
+.clearfix
+  display: inline-block
+  // :伪类选择器
+  // ::伪元素选择器
+  &:after
+    // 下面三句话给父元素结尾添加空的块元素
+    display: block
+    content: "."
+    // 清除浮动元素会对当前元素的影响
+    // 浏览器会为元素添加一个上边距，以使其位置不受其他元素的影响
+    clear: both
+    height: 0
+    line-height: 0
+    // 块级格式化环境BFC
+    visibility: hidden
+
 @media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
   .border-1px
     &::after
