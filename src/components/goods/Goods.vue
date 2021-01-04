@@ -36,22 +36,35 @@
                   <span class="now">￥{{food.price}}</span>
                   <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
+                <div class="cartcontrol-wrapper">
+                  <cart-control :food="food"></cart-control>
+                </div>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
+    <shop-cart :delivery-price="seller.deliveryPrice"
+               :min-price="seller.minPrice"
+               :select-foods="selectFoods"></shop-cart>
   </div>
 </template>
 
 <script>
+  import ShopCart from '@/components/shopcart/ShopCart'
+  import CartControl from '@/components/cartcontrol/CartControl'
+
   import BScroll from 'better-scroll';
 
   const ERR_OK = 0;
 
   export default {
     name: 'Goods',
+    components: {
+      ShopCart,
+      CartControl
+    },
     props: {
       seller: {
         type: Object
@@ -75,6 +88,17 @@
           }
         }
         return 0;
+      },
+      selectFoods() {
+        let foods = [];
+        this.goods.forEach((good) => {
+          good.foods.forEach((food) => {
+            if (food.count) {
+              foods.push(food);
+            }
+          })
+        });
+        return foods;
       }
     },
     created() {
@@ -93,7 +117,7 @@
             this._calculateHeight();
           })
         }
-      })
+      });
     },
     methods: {
       // 响应点击菜单
@@ -137,6 +161,10 @@
         }
         // console.log(this.listHeight); //输出数组[0, 1042, 1199, 1321, 1633, 1850, 2088, 2400, 2903, 3604]
       },
+      // 监听到CartControl子组件发送过来的add事件
+      // add(target) {
+      //   console.log('飞出小球');
+      // }
     }
   }
 </script>
@@ -249,4 +277,8 @@
               text-decoration: line-through
               font-size: 10px
               color: rgb(147, 153, 159)
+          .cartcontrol-wrapper
+            position: absolute
+            bottom: 12px
+            right: 0
 </style>
