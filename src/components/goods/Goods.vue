@@ -20,7 +20,7 @@
           <h1 class="title">{{item.name}}</h1>
           <ul>
             <!-- class这里加的hook没有实际用途，只是为了让js能获取到 -->
-            <li v-for="(food, index) in item.foods" :key="index"
+            <li @click="selectFood(food, $event)" v-for="(food, index) in item.foods" :key="index"
                 class="food-item border-1px">
               <div class="icon">
                 <img width="57" height="57" :src="food.icon" alt="">
@@ -37,7 +37,7 @@
                   <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <cart-control :food="food"></cart-control>
+                  <cart-control :food="food" @add="add"></cart-control>
                 </div>
               </div>
             </li>
@@ -47,13 +47,16 @@
     </div>
     <shop-cart :delivery-price="seller.deliveryPrice"
                :min-price="seller.minPrice"
-               :select-foods="selectFoods"></shop-cart>
+               :select-foods="selectFoods"
+               ref="shopcart"></shop-cart>
+    <food :food="selectedFood" ref="food"></food>
   </div>
 </template>
 
 <script>
   import ShopCart from '@/components/shopcart/ShopCart'
   import CartControl from '@/components/cartcontrol/CartControl'
+  import Food from '../food/Food.vue';
 
   import BScroll from 'better-scroll';
 
@@ -63,7 +66,8 @@
     name: 'Goods',
     components: {
       ShopCart,
-      CartControl
+      CartControl,
+      Food
     },
     props: {
       seller: {
@@ -74,7 +78,8 @@
       return {
         goods: [],
         listHeight: [],
-        scrollY: 0
+        scrollY: 0,
+        selectedFood: {}
       }
     },
     computed: {
@@ -127,6 +132,14 @@
         let el = foodList[index];
         this.foodsScroll.scrollToElement(el, 300);
       },
+      // 点击选中的food
+      selectFood(food, event) {
+        console.log('food被点击');
+        // 根据点击绑定选中的food
+        this.selectedFood = food;
+        // 使用ref来调用子组件food的show方法
+        this.$refs.food.show();
+      },
       // 初始化Better-Scroll
       _initScroll() {
         this.menuScroll = new BScroll(this.$refs.menuwrapperlist, {
@@ -162,9 +175,21 @@
         // console.log(this.listHeight); //输出数组[0, 1042, 1199, 1321, 1633, 1850, 2088, 2400, 2903, 3604]
       },
       // 监听到CartControl子组件发送过来的add事件
-      // add(target) {
-      //   console.log('飞出小球');
-      // }
+      add(target) {
+        console.log('飞出小球');
+        this._drop(target);
+      },
+      add1(target) {
+        console.log('food飞出小球');
+        this._drop(target);
+      },
+      _drop(target) {
+        // 优化体验，异步执行下落的动画
+        this.$nextTick(() => {
+          // 通过这个访问子组件ShopCart的drop方法
+          this.$refs.shopcart.drop(target);
+        })
+      }
     }
   }
 </script>

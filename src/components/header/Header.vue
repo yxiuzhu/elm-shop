@@ -233,6 +233,8 @@
       width: 100%
       height: 100%
       overflow: auto
+      // 模糊后面的背景
+      backdrop-filter: blur(10px)
       // 添加渐变动画
       opacity: 1
       background: rgba(7, 17, 27, 0.8)
