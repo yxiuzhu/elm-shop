@@ -49,7 +49,7 @@
                :min-price="seller.minPrice"
                :select-foods="selectFoods"
                ref="shopcart"></shop-cart>
-    <food :food="selectedFood" ref="food"></food>
+    <food :food="selectedFood" ref="food" @add="add"></food>
   </div>
 </template>
 
@@ -177,10 +177,6 @@
       // 监听到CartControl子组件发送过来的add事件
       add(target) {
         console.log('飞出小球');
-        this._drop(target);
-      },
-      add1(target) {
-        console.log('food飞出小球');
         this._drop(target);
       },
       _drop(target) {

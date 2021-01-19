@@ -19,7 +19,7 @@
             <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
           </div>
           <div class="cartcontrol-wrapper">
-            <cart-control :food="food"></cart-control>
+            <cart-control :food="food" @add="addToGoods"></cart-control>
           </div>
           <transition name="fade">
             <div @click.stop.prevent="addFirst" class="buy" v-show="!food.count || food.count===0">
@@ -150,6 +150,12 @@
         this.$nextTick(() => {
           this.scroll.refresh()
         })
+      },
+      // 监听到CartControl子组件发送过来的add事件,
+      // 并将事件继续发送至Goods组件
+      addToGoods(target) {
+        console.log('飞出小球');
+        this.$emit('add', event.target);
       }
     }
   }

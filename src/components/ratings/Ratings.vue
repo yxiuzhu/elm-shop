@@ -144,8 +144,11 @@
         padding: 6px 0
         width: 137px
         border-right: 1px solid rgba(7, 17, 27, 0.1)
-        // border-bottom: 1px solid rgba(7, 17, 27, 0.1)
         text-align: center
+        // 防止iPhone5的小屏出现布局错乱
+        @media only screen and (max-width: 320px)
+          flex: 0 0 120px
+          width: 120px
         .score
           margin-bottom: 6px
           line-height: 28px
@@ -164,6 +167,9 @@
         // 右侧自适应
         flex: 1
         padding: 6px 0 6px 24px
+        // 改变iPhone5等小屏布局
+        @media only screen and (max-width: 320px)
+          padding-left: 6px
         .score-wrapper
           margin-bottom: 8px
           .title
