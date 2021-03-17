@@ -36,15 +36,15 @@
         <split></split>
         <div class="rating">
           <h1 class="title">商品评价</h1>
-          <rating-select @ratingevent="ratingevent" 
+          <rating-select @ratingevent="ratingevent"
                          :select-type="selectType"
                          :only-content="onlyContent"
                          :desc='desc'
                          :ratings="food.ratings"></rating-select>
           <div class="rating-wrapper">
             <ul>
-              <li v-show="needShow(rating.rateType, rating.text)" 
-                  v-for="(rating, index) in food.ratings" :key="index" 
+              <li v-show="needShow(rating.rateType, rating.text)"
+                  v-for="(rating, index) in food.ratings" :key="index"
                   class="rating-item">
                 <div class="user">
                   <span class="name">{{rating.username}}</span>
@@ -144,6 +144,7 @@
           return type === this.selectType;
         }
       },
+      // 评论
       ratingevent(type, data) {
         this[type] = data;
         // 需要异步更新better-scroll
@@ -174,7 +175,7 @@
     opacity: 1
     transform: translate3d(0, 0, 0)
     &.move-enter-active, &.move-leave-active
-      transition: all 0.3s linear 
+      transition: all 0.3s linear
     &.move-enter, &.move-leave-active
       transform: translate3d(100%, 0, 0)
     .image-header
@@ -205,7 +206,7 @@
       .title
         line-height: 14px
         margin-bottom: 8px
-        font-size: 14px 
+        font-size: 14px
         font-weight: 700
         color: rgb(7, 17, 27)
       .detail
