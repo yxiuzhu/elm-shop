@@ -127,8 +127,8 @@
       backheader() {
         this.showFlag = false
       },
-      addFirst() {
-        console.log(event.target);
+      addFirst(event) {
+        // console.log(event.target);
         // 制作抛物线动画，未生效bug待解决
         this.$emit('add', event.target);
         Vue.set(this.food, 'count', 1);
@@ -154,9 +154,9 @@
       },
       // 监听到CartControl子组件发送过来的add事件,
       // 并将事件继续发送至Goods组件
-      addToGoods(target) {
+      addToGoods() {
         console.log('飞出小球');
-        this.$emit('add', event.target);
+        this.$emit('add');
       }
     }
   }
