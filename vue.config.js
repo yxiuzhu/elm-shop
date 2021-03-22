@@ -51,6 +51,14 @@ module.exports = {
       })
     }
   },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        'api': '@/api',
+        'components': '@/components'
+      }
+    }
+  },
   chainWebpack: config => {
     // 查看打包文件体积大小
     config

@@ -22,8 +22,7 @@
 
 <script>
 import Header from './components/header/Header';
-
-const ERR_OK = 0;
+import {getSeller} from 'api'
 
 export default {
   name: 'App',
@@ -37,14 +36,22 @@ export default {
   },
   // 使用vue-resource获取到了seller对象数据
   created() {
-    this.$http.get('api/seller').then((response) => {
-      // 原来返回的response只是一个属性，下面这样才会变成对象
-      response = response.body;
-      if(response.errno === ERR_OK) {
-        this.seller = response.data;
-        // console.log(this.seller);
-      }
-    });
+    this._getSeller()
+    // this.$http.get('api/seller').then((response) => {
+    //   // 原来返回的response只是一个属性，下面这样才会变成对象
+    //   response = response.body;
+    //   if(response.errno === ERR_OK) {
+    //     this.seller = response.data;
+    //     // console.log(this.seller);
+    //   }
+    // });
+  },
+  methods: {
+    _getSeller() {
+      getSeller().then((seller) => {
+        this.seller = seller
+      })
+    }
   }
 };
 </script>

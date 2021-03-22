@@ -74,7 +74,6 @@
   import Star from '../star/Star';
 
   export default {
-
     components: {
       Star
     },
