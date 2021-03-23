@@ -7,7 +7,7 @@
             :class="{'current':currentIndex===index}"
             @click="selectMenu(index)">
           <span class="text border-1px">
-            <span v-show="item.type>0" class="icon" 
+            <span v-show="item.type>0" class="icon"
                   :class="classMap[item.type]"></span>{{item.name}}
           </span>
         </li>
@@ -56,7 +56,7 @@
 <script>
   import ShopCart from '@/components/shopcart/ShopCart'
   import CartControl from '@/components/cartcontrol/CartControl'
-  import Food from '../food/Food.vue';
+  import Food from '@/components/food/Food.vue';
 
   import BScroll from 'better-scroll';
 

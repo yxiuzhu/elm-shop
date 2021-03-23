@@ -25,9 +25,9 @@
     //   console.log(this.food);
     // }
     methods:{
-      addCart() {
+      addCart(event) {
         // console.log('采购的food数目增加');
-        console.log(event.target);
+        // console.log(event.target);
         if (!this.food.count) {
           Vue.set(this.food, 'count', 1);
         } else {
@@ -60,7 +60,7 @@
         transition: all 0.4s linear
         transform: rotate(0)
       &.move-enter-active, &.move-leave-active
-        transition: all 0.4s linear 
+        transition: all 0.4s linear
       &.move-enter, &.move-leave-to
         opacity: 0
         transform: translate3d(24px, 0, 0)

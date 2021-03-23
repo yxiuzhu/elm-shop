@@ -22,7 +22,9 @@
             <cart-control :food="food" @add="addToGoods"></cart-control>
           </div>
           <transition name="fade">
-            <div @click.stop.prevent="addFirst" class="buy" v-show="!food.count || food.count===0">
+            <div @click.stop.prevent="addFirst"
+                 class="buy"
+                 v-show="!food.count || food.count===0">
               加入购物车
             </div>
           </transition>
@@ -154,9 +156,9 @@
       },
       // 监听到CartControl子组件发送过来的add事件,
       // 并将事件继续发送至Goods组件
-      addToGoods() {
+      addToGoods(target) {
         console.log('飞出小球');
-        this.$emit('add');
+        this.$emit('add', target);
       }
     }
   }

@@ -41,7 +41,7 @@
         </div>
         <ul v-if="seller.supports" class="supports">
           <li class="support-item border-1px" v-for="(item, index) in seller.supports" :key="index">
-            <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+            <support-ico class="icon" :size=4 :type="seller.supports[index].type"></support-ico>
             <span class="text">{{seller.supports[index].description}}</span>
           </li>
         </ul>
@@ -69,8 +69,9 @@
 </template>
 
 <script>
-  import Star from '@/components/star/Star'
-  import Split from '@/components/split/Split'
+  import Star from 'components/star/Star'
+  import Split from 'components/split/Split'
+  import SupportIco from 'components/support-ico/support-ico'
 
   import BScroll from 'better-scroll'
 
@@ -78,7 +79,8 @@
     name: 'Seller',
     components: {
       Star,
-      Split
+      Split,
+      SupportIco
     },
     props: {
       seller: {
@@ -94,9 +96,6 @@
       favoriteText() {
         return this.favorite ? '已收藏' : '收藏';
       }
-    },
-    created() {
-      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
     },
     // watch监视对象的变化
     watch: {
@@ -200,7 +199,7 @@
             color: rgb(147, 153, 159)
           .content
             line-height: 24px
-            color: rgb(7, 17, 27)            
+            color: rgb(7, 17, 27)
             .stress
               font-size: 24px
       .favorite
@@ -250,16 +249,6 @@
           margin-right: 6px
           background-size: 16px 16px
           background-repeat: no-repeat
-          &.decrease
-            bg-image('decrease_4')
-          &.discount
-            bg-image('discount_4')
-          &.guarantee
-            bg-image('guarantee_4')
-          &.invoice
-            bg-image('invoice_4')
-          &.special
-            bg-image('special_4')
         .text
           display: inline-block
           line-height: 16px

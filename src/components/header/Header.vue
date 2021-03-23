@@ -13,7 +13,8 @@
           {{seller.description}}/{{seller.deliveryTime}}分钟送达
         </div>
         <div v-if="seller.supports" class="support">
-          <span class="icon" :class="classMap[seller.supports[0].type]"></span>
+          <support-ico class="icon" :size=1 :type="seller.supports[0].type"></support-ico>
+          <!-- <span class="icon" :class="classMap[seller.supports[0].type]"></span> -->
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
@@ -47,7 +48,8 @@
             </div>
             <ul v-if="seller.supports" class="supports">
               <li class="support-item" v-for="(item, index) in seller.supports" :key="index">
-                <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+                <support-ico class="icon" :size=2 :type="seller.supports[index].type"></support-ico>
+                <!-- <span class="icon" :class="classMap[seller.supports[index].type]"></span> -->
                 <span class="text">{{seller.supports[index].description}}</span>
               </li>
             </ul>
@@ -71,11 +73,13 @@
 </template>
 
 <script>
-  import Star from '../star/Star';
+  import Star from 'components/star/Star'
+  import SupportIco from '../support-ico/support-ico'
 
   export default {
     components: {
-      Star
+      Star,
+      SupportIco
     },
     props: {
       seller: {
@@ -95,16 +99,14 @@
       hideDetail() {
         this.detailShow = false;
       }
-    },
-    created() {
-      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
     }
   }
 </script>
 
 <style lang='stylus'>
   // 这里不能而是用别名路径，别名路径只适用于js文件
-  @import "../../common/stylus/mixin";
+  @import "../../common/stylus/mixin.styl"
+
   .header
     color: #fff
     background: rgba(7, 17, 27, 0.5)
@@ -146,22 +148,12 @@
         .support
           .icon
             display: inline-block
-            vertical-align: toop
+            vertical-align: top
             width: 12px
             height: 12px
             margin-right: 4px
             background-size: 12px 12px
             background-repeat: no-repeat
-            &.decrease
-              bg-image:('decrease_1')
-            &.discount
-              bg-image:('discount_1')
-            &.guarantee
-              bg-image:('guarantee_1')
-            &.invoice
-              bg-image:('invoice_1')
-            &.special
-              bg-image:('special_1')
           .text
             vertical-align: top
             line-height: 12px
@@ -289,16 +281,6 @@
                 margin-right: 6px
                 background-size: 16px 16px
                 background-repeat: no-repeat
-                &.decrease
-                  bg-image('decrease_2')
-                &.discount
-                  bg-image('discount_2')
-                &.guarantee
-                  bg-image('guarantee_2')
-                &.invoice
-                  bg-image('invoice_2')
-                &.special
-                  bg-image('special_2')
               .text
                 line-height: 17px
                 font-weight: 200
