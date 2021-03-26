@@ -24,7 +24,6 @@ router.get('/goods', function(req, res) {
   })
 })
 
-
 router.get('/ratings', function(req, res) {
   res.json({
     errno: 0,

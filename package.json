@@ -14,8 +14,8 @@
     "core-js": "^3.6.5",
     "cube-ui": "~1.12.15",
     "vue": "^2.6.11",
-    "vue-resource": "^1.0.1",
-    "vue-router": "^3.4.9"
+    "vue-router": "^3.4.9",
+    "moment": "^2.22.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -27,12 +27,12 @@
       </div>
       <split></split>
       <rating-select @ratingevent="ratingevent"
-                     :select-type="selectType" 
+                     :select-type="selectType"
                      :only-content="onlyContent"
                      :ratings="ratings"></rating-select>
       <div class="rating-wrapper">
         <ul>
-          <li v-for="(rating, index) in ratings" :key="index" 
+          <li v-for="(rating, index) in ratings" :key="index"
               class="rating-item"
               v-show="needShow(rating.rateType, rating.text)">
             <div class="avatar">
@@ -64,6 +64,7 @@
   import Star from '@/components/star/Star'
   import Split from '@/components/split/Split'
   import RatingSelect from '@/components/ratingselect/RatingSelect'
+  import {getRatings} from 'api'
 
   import BScroll from 'better-scroll'
 
@@ -91,19 +92,15 @@
       }
     },
     created() {
-      const url = '/api/ratings';
-      this.$http.get(url).then((response) => {
-        response = response.body;
-        if (response.errno === ERR_OK) {
-          this.ratings = response.data;
-          // 当数据变了，DOM的位置没变
-          this.$nextTick(() => {
-            this.scroll = new BScroll(this.$refs.ratings, {
-              click: true
-            });
+      this._getRatings()
+      if (this.ratings) {
+        // 当数据变了，DOM的位置没变
+        this.$nextTick(() => {
+          this.scroll = new BScroll(this.$refs.ratings, {
+            click: true
           });
-        }
-      });
+        });
+      }
     },
     methods: {
       ratingevent(type, data) {
@@ -121,6 +118,11 @@
         } else {
           return type === this.selectType;
         }
+      },
+      _getRatings() {
+        getRatings().then((ratings) => {
+          this.ratings = ratings
+        })
       }
     }
   }
@@ -233,7 +235,7 @@
           .text
             margin-bottom: 8px
             line-height: 18px
-            font-size: 12px   
+            font-size: 12px
             color: rgb(7, 17, 27)
           .recommend
             line-height: 16px

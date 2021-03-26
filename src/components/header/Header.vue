@@ -213,7 +213,7 @@
       top: 0
       left: 0
       width: 100%
-      height: 20%
+      height: 18%
       z-index: -1
       filter: blur(10px)
     .detail
@@ -224,8 +224,10 @@
       width: 100%
       height: 100%
       overflow: auto
-      // 模糊后面的背景
+      // 高斯模糊后面的背景（ios适用）
       backdrop-filter: blur(10px)
+      // 背景文字都会模糊
+      // filter: blur(10px)
       // 添加渐变动画
       opacity: 1
       background: rgba(7, 17, 27, 0.8)
@@ -237,9 +239,11 @@
       // 渐变动画设置结束
       .detail-wrapper
         width: 100%
+        // 最小高度要有视口的高度
         min-height: 100%
         .detail-main
           margin-top: 64px
+          // 用来把close的高度撑开，避免被覆盖
           padding-bottom: 64px
           .name
             line-height: 16px
@@ -298,6 +302,7 @@
         width: 32px
         height: 32px
         margin: -64px auto 0 auto
+        // 清除元素左右浮动
         clear: both
         font-size: 32px
 </style>

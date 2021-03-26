@@ -57,10 +57,9 @@
   import ShopCart from '@/components/shopcart/ShopCart'
   import CartControl from '@/components/cartcontrol/CartControl'
   import Food from '@/components/food/Food.vue';
+  import {getGoods} from 'api'
 
   import BScroll from 'better-scroll';
-
-  const ERR_OK = 0;
 
   export default {
     name: 'Goods',
@@ -108,21 +107,18 @@
     },
     created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-
-      this.$http.get('api/goods').then((response) => {
-        response = response.body;
-        if (response.errno === ERR_OK) {
-          this.goods = response.data;
-          // 操作原生DOM，调用这个接口，然后在这个接口的回调函数进行操作
-          // 能保证DOM已经渲染好，之后计算属性和值的时候不会报错
-          this.$nextTick(() => {
-            // DOM拿到数据后
-            this._initScroll();
-            // 拿到高度数组
-            this._calculateHeight();
-          })
-        }
-      });
+      this._getGoods()
+      // 使用axios获取数据
+      if (this.goods) {
+        // 操作原生DOM，调用这个接口，然后在这个接口的回调函数进行操作
+        // 能保证DOM已经渲染好，之后计算属性和值的时候不会报错
+        this.$nextTick(() => {
+          // DOM拿到数据后
+          this._initScroll();
+          // 拿到高度数组
+          this._calculateHeight();
+        })
+      }
     },
     methods: {
       // 响应点击菜单
@@ -184,6 +180,11 @@
         this.$nextTick(() => {
           // 通过这个访问子组件ShopCart的drop方法
           this.$refs.shopcart.drop(target);
+        })
+      },
+      _getGoods() {
+        getGoods().then((goods) => {
+          this.goods = goods
         })
       }
     }

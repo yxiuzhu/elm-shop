@@ -37,6 +37,7 @@ export default {
   // 使用vue-resource获取到了seller对象数据
   created() {
     this._getSeller()
+    // 删除vue-resource
     // this.$http.get('api/seller').then((response) => {
     //   // 原来返回的response只是一个属性，下面这样才会变成对象
     //   response = response.body;
@@ -47,6 +48,7 @@ export default {
     // });
   },
   methods: {
+    // 利用封装的axios获取数据
     _getSeller() {
       getSeller().then((seller) => {
         this.seller = seller

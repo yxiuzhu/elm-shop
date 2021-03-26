@@ -52,7 +52,7 @@
                   <span class="name">{{rating.username}}</span>
                   <img class="avatar" width="12" height="12" :src="rating.avatar" alt="">
                 </div>
-                <div class="time">{{rating.rateTime}}</div>
+                <div class="time">{{ format(rating.rateTime) }}</div>
                 <p class="text">
                   <span :class="{'icon-thumb_up':rating.rateType===0,'icon-thumb_down':rating.rateType===1}">
                     {{rating.text}}
@@ -77,6 +77,7 @@
 
   import Vue from 'vue';
   import BScroll from 'better-scroll';
+  import moment from 'moment'
 
   const POSITIVE = 0;
   const NEGATIVE = 1;
@@ -159,6 +160,10 @@
       addToGoods(target) {
         console.log('飞出小球');
         this.$emit('add', target);
+      },
+      // 利用Moment.js开源库来格式化时间戳
+      format(time) {
+        return moment(time).format('YYYY-MM-DD hh:mm')
       }
     }
   }
