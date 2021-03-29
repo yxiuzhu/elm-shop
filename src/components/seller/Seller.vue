@@ -72,8 +72,11 @@
   import Star from 'components/star/Star'
   import Split from 'components/split/Split'
   import SupportIco from 'components/support-ico/support-ico'
+  import {saveToLocal, loadFromLocal} from 'common/js/storage'
 
   import BScroll from 'better-scroll'
+
+  const KEY = 'favorite'
 
   export default {
     name: 'Seller',
@@ -113,6 +116,9 @@
         this._initPics();
       })
     },
+    created() {
+      this.favorite = loadFromLocal(this.seller.id, KEY, false)
+    },
     methods: {
       _initScroll() {
         if (!this.scroll) {
@@ -138,13 +144,14 @@
                 eventPassthrough: 'vertical'
               });
             } else {
-              this.picScroll.refresh();
+              this.picScroll.refresh()
             }
           })
         }
       },
       toggleFavorite() {
-        return this.favorite = !this.favorite;
+        this.favorite = !this.favorite
+        saveToLocal(this.seller.id, KEY, this.favorite)
       }
     }
   }

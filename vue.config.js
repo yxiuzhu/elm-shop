@@ -29,10 +29,12 @@ module.exports = {
     },
     before(app) {
       app.get('/api/seller', function(req, res) {
+        const id = req.query.id
         res.json({
           // 返回0：默认返回的数据是成功的
           errno: 0,
-          data: seller
+          // 因为mock数据中没有id，这里给数据拼接上id
+          data: Object.assign({}, seller, {id})
         })
       })
 
@@ -55,7 +57,8 @@ module.exports = {
     resolve: {
       alias: {
         'api': '@/api',
-        'components': '@/components'
+        'components': '@/components',
+        'common': '@/common'
       }
     }
   },

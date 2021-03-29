@@ -21,8 +21,9 @@
 </template>
 
 <script>
-import Header from './components/header/Header';
+import Header from './components/header/Header'
 import {getSeller} from 'api'
+import qs from 'query-string'
 
 export default {
   name: 'App',
@@ -31,7 +32,10 @@ export default {
   },
   data() {
     return {
-      seller: {}
+      seller: {
+        // 从query请求中拿到id
+        id: qs.parse(location.search).id
+      }
     };
   },
   // 使用vue-resource获取到了seller对象数据
@@ -50,7 +54,9 @@ export default {
   methods: {
     // 利用封装的axios获取数据
     _getSeller() {
-      getSeller().then((seller) => {
+      getSeller({
+        id: this.seller.id
+      }).then((seller) => {
         this.seller = seller
       })
     }

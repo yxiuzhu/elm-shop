@@ -50,7 +50,7 @@
                 <span class="item" v-for="(item, index) in rating.recommend" :key="index">{{item}}</span>
               </div>
               <div class="time">
-                {{rating.rateTime}}
+                {{ format(rating.rateTime) }}
               </div>
             </div>
           </li>
@@ -67,6 +67,7 @@
   import {getRatings} from 'api'
 
   import BScroll from 'better-scroll'
+  import moment from 'moment'
 
   const ALL = 2;
   const ERR_OK = 0;
@@ -119,8 +120,14 @@
           return type === this.selectType;
         }
       },
+      // 利用Moment.js开源库来格式化时间戳
+      format(time) {
+        return moment(time).format('YYYY-MM-DD hh:mm')
+      },
       _getRatings() {
-        getRatings().then((ratings) => {
+        getRatings({
+          id: this.seller.id
+        }).then((ratings) => {
           this.ratings = ratings
         })
       }
