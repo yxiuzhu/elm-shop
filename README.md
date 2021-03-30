@@ -34,11 +34,7 @@ npm run serve
 ## 项目演示
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210330231905295.gif)
-
-
-[项目演示地址](http://47.115.112.11:8900/)（请用chrome手机模式预览）
-
-![二维码](https://img-blog.csdnimg.cn/20210322224125424.png)
+[项目演示地址](http://47.115.112.11:8900/)（请用chrome手机模式预览）![二维码](https://img-blog.csdnimg.cn/20210322224125424.png)
 
 ## 项目页面及功能
 
