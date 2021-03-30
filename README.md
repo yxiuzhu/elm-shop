@@ -171,7 +171,6 @@ README.md-项目简介
 * 组件复用：通过父子组件之间的通信，实现子组件CartControl.vue的小球飞出动画
 
 ![Vue.js过渡动画](https://img-blog.csdnimg.cn/20210326221111413.gif)
-
 ![Vue.js过渡动画](https://img-blog.csdnimg.cn/20210326221416333.gif)
 
 **Star 星星组件**
