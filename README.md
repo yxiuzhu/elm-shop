@@ -32,11 +32,13 @@ npm run serve
 ```
 
 ## 项目演示
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210330231905295.gif)
 
 
-- [项目演示地址](http://47.115.112.11:8900/)（请用chrome手机模式预览）
- ![二维码](https://img-blog.csdnimg.cn/20210322224125424.png)
+[项目演示地址](http://47.115.112.11:8900/)（请用chrome手机模式预览）
+
+![二维码](https://img-blog.csdnimg.cn/20210322224125424.png)
 
 ## 项目页面及功能
 
@@ -120,10 +122,12 @@ README.md-项目简介
 ## 项目总结
 
 **移动端border-1px样式**
+
 ![移动端border-1px样式](https://img-blog.csdnimg.cn/20210326204356285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 ![移动端border-1px样式](https://img-blog.csdnimg.cn/20210328202741306.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 
 **BFC解决高度塌陷问题**
+
 ![BFC解决高度塌陷问题](https://img-blog.csdnimg.cn/20210326204525632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
  **CSS Sticky footers 布局**
 >应用背景：当页面内容不够长的时候，页脚块需要粘贴在视口底部；当页面内容足够长，页脚块会被内容向下推送
@@ -132,6 +136,7 @@ README.md-项目简介
 ![CSS Sticky footers 布局](https://img-blog.csdnimg.cn/20210326213509432.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 
 **自适应布局**
+
 1、左侧宽度固定80px，右侧宽度自适应
 ![自适应布局](https://img-blog.csdnimg.cn/2021032621432354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 2、媒体查询适应小屏手机
@@ -182,6 +187,7 @@ README.md-项目简介
 * 使用`query-string`第三方库对`query`进行解析，获取查询地址，将对不同id的数据进行缓存
 * 使用`good-storage`的第三方库进行`localStorage`的存取操作
 ![localStorage的移动端数据存取方案](https://img-blog.csdnimg.cn/20210329094739349.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
+
 **项目优化**
 
 * 使用`webpack-bundle-analyzer`分析工具，`npm run report` 生成可视化的分析报告，
